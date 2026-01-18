@@ -84,6 +84,6 @@ Ensure you have **Python 3.10+** installed on Windows.
 
 *Engineered for the Modern Web*
 <br>
-<sub>Made with 💜 by WiBLE Team</sub>
+<sub>Made with 💜 by Ayush</sub>
 
 </div>
