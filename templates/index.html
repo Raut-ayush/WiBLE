@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiBLE+ | Modern Network Command</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Font overrides for specific futuristic look */
+        h1, .speed-value { font-family: 'Orbitron', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1>WiBLE+ SCANNER</h1>
+                <div class="last-scan" id="last-scan">Initializing...</div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn" onclick="triggerRescan()">🔄 Scan Now</button>
+                <button class="btn btn-disconnect" onclick="disconnect()">🔌 Disconnect Wi-Fi</button>
+            </div>
+        </div>
+
+        <!-- 1. Internet Speed Card -->
+        <div class="card speed-card">
+            <div class="card-title">🌐 Internet Speed</div>
+            <div class="speed-display">
+                <div class="speed-value" id="speed-val">0</div>
+                <div class="speed-unit" id="speed-unit">Mbps (Download)</div>
+            </div>
+            <div class="speed-details">
+                <div>⬆️ Upload: <span id="upload-val">-</span></div>
+                <div>📡 Ping: <span id="ping-val" class="ping-value">-</span></div>
+            </div>
+        </div>
+
+        <!-- 2. Wi-Fi Networks Card -->
+        <div class="card">
+            <div class="card-title">
+                📶 Visible Networks
+                <span style="font-size:0.8rem; margin-left:auto; color:var(--text-secondary)">Signal (dBm)</span>
+            </div>
+            <ul class="network-list" id="wifi-list">
+                <!-- Populated by JS -->
+                <li style="padding: 20px; text-align: center; color: #666;">Scanning airwaves...</li>
+            </ul>
+        </div>
+
+        <!-- 3. Rogue AP Detection Card -->
+        <div class="card rogue-card">
+            <div class="card-title">
+                🧨 Threat Detection
+            </div>
+            <ul class="network-list" id="rogue-list">
+                 <!-- Populated by JS -->
+                 <li style="padding: 20px; text-align: center; color: #444;">Monitoring...</li>
+            </ul>
+        </div>
+
+        <!-- 4. Bluetooth Radar Card -->
+        <div class="card">
+            <div class="card-title">🔵 Bluetooth Radar</div>
+            <div class="radar-container">
+                <div class="radar-sweep"></div>
+            </div>
+            <ul class="network-list ble-list" id="ble-list">
+                 <!-- Populated by JS -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title" style="margin-top:0; color:var(--primary-neon)">Connect</h3>
+            <p>Enter password for secured network:</p>
+            <input type="password" id="password-input" class="input-field" placeholder="Wi-Fi Password">
+            <div style="display:flex; justify-content: flex-end; gap: 10px; margin-top: 15px;">
+                <button class="btn" style="background:transparent; border:none;" onclick="closeModal()">Cancel</button>
+                <button class="btn" onclick="submitConnect()">Connect</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
